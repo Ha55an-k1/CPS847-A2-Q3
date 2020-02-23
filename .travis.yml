@@ -1,0 +1,3 @@
+before_install:
+- openssl aes-256-cbc -K $encrypted_bd770ec858eb_key -iv $encrypted_bd770ec858eb_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
