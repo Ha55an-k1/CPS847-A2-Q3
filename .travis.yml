@@ -34,7 +34,7 @@ deploy:
      skip_cleanup: true
      script: rsync -r --delete-after --quiet
         ${TRAVIS_BUILD_DIR}/public_html/index.html
-        ${DEPLOY_USER}@${DEPLOY_SERVER}:home/avm/courses/cps847/m536khan
+        ${DEPLOY_USER}@${DEPLOY_SERVER}:/home/avm/courses/cps847/m536khan
      on:
         branch: master
         
