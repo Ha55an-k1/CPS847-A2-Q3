@@ -10,7 +10,7 @@ before_install:
 - ssh-add /tmp/deploy_rsa
 
 deploy:
-    - provider: script
+     provider: script
      skip_cleanup: true
      script: rsync -r --delete-after --quiet
         ${TRAVIS_BUILD_DIR}/ci_play
@@ -18,8 +18,3 @@ deploy:
      on:
         branch: master
         
-  - provider: script
-    skip_cleanup: true
-    script: npm run deploy
-    on:
-      branch: master
