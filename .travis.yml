@@ -3,11 +3,11 @@ language: python
 #which versions of python to test against
 python:
   - "3.7"
-# command to install dependencies
-install:
+  
+before_script:
+  - easy_install distribute
   - pip install -r requirements.txt
-  - pip install .
-
+  
 addons:
   # add our deploy server to known hosts
   # you can set environmental variable in Travis GUI
