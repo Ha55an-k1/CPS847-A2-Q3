@@ -4,17 +4,16 @@ addons:
   ssh_known_host: moon.scs.ryerson.ca
 
 before_install:
-- openssl aes-256-cbc -K $encrypted_a2ba389e523c_key -iv $encrypted_a2ba389e523c_iv
-  -in deploy_rsa.enc -out ./deploy_rsa -d
+- openssl aes-256-cbc -K $encrypted_a2ba389e523c_key -iv $encrypted_a2ba389e523c_iv -in deploy_rsa.enc -out ./tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
-- chmod 600 ./deploy_rsa
-- ssh-add ./deploy_rsa
+- chmod 600 ./tmp/deploy_rsa
+- ssh-add ./tmp/deploy_rsa
 
 deploy:
      provider: script
      skip_cleanup: true
      script: rsync -r --delete-after --quiet
-        ${TRAVIS_BUILD_DIR}../home/avm/courses/cps847/m536khan
+        ${TRAVIS_BUILD_DIR}./home/avm/courses/cps847/m536khan
         ${DEPLOY_USER}@${DEPLOY_SERVER}:/home/${DEPLOY_USER}
      on:
         branch: master
