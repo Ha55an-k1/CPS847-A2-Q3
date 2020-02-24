@@ -3,7 +3,7 @@ addons:
   # you can set environmental variable in Travis GUI
   ssh_known_host: moon.scs.ryerson.ca
 
-before_install:
+before_deploy:
 - openssl aes-256-cbc -K $encrypted_a2ba389e523c_key -iv $encrypted_a2ba389e523c_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa
@@ -13,8 +13,8 @@ deploy:
      provider: script
      skip_cleanup: true
      script: rsync -r --delete-after --quiet
-        ${TRAVIS_BUILD_DIR}/ci_play
-        ${DEPLOY_USER}@${DEPLOY_SERVER}:/home/avm/courses/cps847/m536khan
+        ${TRAVIS_BUILD_DIR}/home/avm/courses/cps847/m536khan
+        ${DEPLOY_USER}@${DEPLOY_SERVER}:ci_play/index.html
      on:
         branch: master
         
